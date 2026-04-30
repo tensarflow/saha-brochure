@@ -1,0 +1,1405 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Clairsense — A5 Broşür</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CLAIRSENSE A5 BROCHURE
+     148 × 210 mm portrait, double-sided, single page
+     Print: CMYK-safe colors, 3mm bleed, 8mm safe area
+     ========================================================= */
+
+  :root {
+    /* mm → px helper (96dpi reference): 1mm ≈ 3.7795px */
+    --mm: 3.7795275591px;
+
+    /* Palette */
+    --ink:        #0B1B2B;   /* primary navy */
+    --ink-2:      #14273B;
+    --ink-3:      #1B324A;
+    --paper:      #F7F8FA;   /* light neutral */
+    --paper-2:    #EEF1F4;
+    --paper-line: #D7DCE3;
+    --body:       #4A5568;
+    --body-2:     #6A7686;
+    --accent:     #FF6B1A;   /* orange */
+    --flag:       #E30A17;   /* TR red */
+    --white:      #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", "Söhne Buch", system-ui, sans-serif;
+    color: var(--ink);
+    background: #2a2f36;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Screen preview: show both pages side-by-side */
+  .preview {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 32px;
+    min-height: 100vh;
+  }
+
+  .label {
+    color: #aab1bb;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 10px 2px;
+  }
+
+  /* The A5 page */
+  .page {
+    width: calc(148 * var(--mm));
+    height: calc(210 * var(--mm));
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.3);
+    color: var(--ink);
+    font-family: "Inter", sans-serif;
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+
+  /* Safe area: 8mm from edges */
+  .safe {
+    position: absolute;
+    inset: calc(8 * var(--mm));
+  }
+
+  /* Type primitives */
+  .display {
+    font-family: "Inter Tight", "Söhne Breit", "Inter", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.018em;
+    line-height: 0.95;
+  }
+  .caps {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .mono { font-feature-settings: "tnum" 1, "lnum" 1; }
+
+  /* ================================================================
+     FRONT COVER
+     ================================================================ */
+  .front {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  /* Subtle topographic / schematic grid behind everything */
+  .front::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: calc(6 * var(--mm)) calc(6 * var(--mm));
+    pointer-events: none;
+  }
+  .front::after {
+    /* contour-style overlay */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 75% 35%, rgba(255,107,26,0.08), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(70,130,180,0.06), transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Top bar */
+  .front-top {
+    position: absolute;
+    top: calc(8 * var(--mm));
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-logo {
+    height: calc(11 * var(--mm));
+    width: calc(11 * var(--mm));
+    display: block;
+    object-fit: contain;
+    flex: none;
+  }
+  .brand-logo--white {
+    /* white PNG — no filter needed on dark cover */
+  }
+  .brand-logo--ink {
+    /* invert white logo to navy ink on light panel */
+    filter: brightness(0) saturate(100%);
+  }
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: calc(2.5 * var(--mm));
+    color: var(--white);
+  }
+  .brand-word {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 14pt;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1;
+  }
+    gap: 8px;
+    color: var(--white);
+  }
+  .logo-mark {
+    width: 22px; height: 22px;
+    position: relative;
+  }
+  .logo-mark svg { display: block; }
+  .logo-word {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 14pt;
+    letter-spacing: -0.01em;
+  }
+  .made-in {
+    display: flex;
+    align-items: center;
+    gap: calc(2 * var(--mm));
+    font-size: 7pt;
+    line-height: 1;
+    color: rgba(255,255,255,0.92);
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .made-in .tr-flag {
+    width: calc(8 * var(--mm));
+    height: calc(8 * var(--mm));
+    display: block;
+    flex: none;
+    object-fit: contain;
+  }
+
+  .divider {
+    position: absolute;
+    top: calc(20 * var(--mm));
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    height: 1px;
+    background: rgba(255,255,255,0.18);
+  }
+
+  /* Hero headline area */
+  .hero {
+    position: absolute;
+    top: calc(28 * var(--mm));
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 28pt;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    word-spacing: 0.08em;
+    color: var(--white);
+    padding-top: 0.06em;
+  }
+  .hero h1 .line2 {
+    display: block;
+    color: var(--white);
+  }
+  /* Tri-feature lockup */
+  .feature-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: calc(2.2 * var(--mm));
+    margin-top: calc(4 * var(--mm));
+    padding: calc(2.2 * var(--mm)) 0;
+    border-top: 0.5px solid rgba(255,255,255,0.18);
+    border-bottom: 0.5px solid rgba(255,255,255,0.18);
+    text-align: center;
+  }
+  .feature-row .feat {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 7.4pt;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .feature-row .feat .num {
+    display: block;
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 9pt;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--accent);
+    margin-bottom: 1px;
+    line-height: 1;
+  }
+  .feature-row .plus {
+    color: var(--accent);
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 300;
+    font-size: 14pt;
+    line-height: 1;
+    transform: translateY(-2px);
+  }
+
+  .hero-tagline {
+    margin-top: calc(3 * var(--mm));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(1.5 * var(--mm));
+    text-align: center;
+  }
+  .hero-tagline .all-in {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 17pt;
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.015em;
+  }
+  .hero-tagline .all-in em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .hero-tagline .promise {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    font-size: 12pt;
+    line-height: 1.32;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.005em;
+    max-width: 95mm;
+    text-align: center;
+    margin-top: calc(1 * var(--mm));
+  }
+  .hero-tagline .promise b {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .accent-rule {
+    position: absolute;
+    top: calc(78 * var(--mm));
+    left: calc(8 * var(--mm));
+    width: calc(18 * var(--mm));
+    height: 2px;
+    background: var(--accent);
+  }
+
+  /* Device visual */
+  .device-wrap {
+    position: absolute;
+    top: calc(81 * var(--mm));
+    left: calc(2 * var(--mm));
+    right: 0;
+    height: calc(72 * var(--mm));
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .device-stage {
+    position: relative;
+    width: calc(96 * var(--mm));
+    height: 100%;
+  }
+
+  /* Faint coordinate ticks behind device */
+  .device-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 100% calc(8 * var(--mm)),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / calc(8 * var(--mm)) 100%;
+    mask: radial-gradient(ellipse 80% 60% at 50% 55%, #000 30%, transparent 75%);
+    -webkit-mask: radial-gradient(ellipse 80% 60% at 50% 55%, #000 30%, transparent 75%);
+  }
+
+  /* Top spotlight on device */
+  .device-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 35% at 50% 18%, rgba(255,255,255,0.18), transparent 60%);
+    pointer-events: none;
+  }
+
+  .device-photo-wrap {
+    position: absolute;
+    inset: 0% 0% 2% 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .device-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(0,0,0,0.55)) drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    /* Soft drop shadow to lift white device off dark hero */
+    filter:
+      drop-shadow(0 2px 8px rgba(0,0,0,0.5))
+      drop-shadow(0 12px 24px rgba(0,0,0,0.45));
+    mix-blend-mode: normal;
+  }
+  .device-anno { z-index: 2; pointer-events: none; }
+
+  .device-tag {
+    position: absolute;
+    bottom: 6px;
+    left: 4px;
+    font-size: 6.5pt;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .device-callout {
+    position: absolute;
+    left: calc(8 * var(--mm));
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: calc(46 * var(--mm));
+  }
+  .device-callout .label-row {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--accent);
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .device-callout .label-row::before {
+    content: ""; width: 12px; height: 1.5px; background: var(--accent);
+  }
+  .device-callout h3 {
+    margin: 0;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 700;
+    font-size: 11pt;
+    line-height: 1.15;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .device-callout .specs {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.7);
+  }
+  .device-callout .specs span b {
+    color: var(--white); font-weight: 600;
+  }
+
+  /* Pillar block */
+  .pillars {
+    position: absolute;
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    top: calc(151 * var(--mm));
+    border-top: 1px solid rgba(255,255,255,0.22);
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+    padding: calc(4.5 * var(--mm)) calc(3 * var(--mm));
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: calc(2 * var(--mm));
+  }
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: calc(1.6 * var(--mm));
+    font-size: 7.2pt;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.25;
+    padding: 0 calc(0.5 * var(--mm));
+  }
+  .pillar + .pillar { border-left: 1px solid rgba(255,255,255,0.12); }
+  .pillar svg { flex: none; opacity: 0.95; }
+
+  /* Closing motto (between pillars and bottom strip) */
+  .closing-motto {
+    position: absolute;
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    bottom: calc(22 * var(--mm));
+    text-align: center;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: rgba(255,255,255,0.95);
+  }
+  .closing-motto b {
+    color: var(--accent);
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* Bottom strip */
+  .front-bottom {
+    position: absolute;
+    bottom: calc(8 * var(--mm));
+    left: calc(8 * var(--mm));
+    right: calc(8 * var(--mm));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: calc(2.5 * var(--mm));
+    border-top: 1px solid rgba(255,255,255,0.16);
+    font-size: 7pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+  }
+  .front-bottom .right { color: var(--accent); font-weight: 600; }
+
+  /* Index marker (top-left tiny) */
+  .index-mark {
+    position: absolute;
+    top: calc(4 * var(--mm));
+    left: calc(4 * var(--mm));
+    font-size: 6pt;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.35);
+    font-family: "Inter", monospace;
+  }
+  .index-mark.dark { color: rgba(11,27,43,0.35); }
+
+  /* ================================================================
+     BACK SIDE
+     ================================================================ */
+  .back {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .back-grid {
+    position: absolute;
+    inset: calc(7 * var(--mm)) calc(8 * var(--mm)) calc(26 * var(--mm));
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Section base */
+  .sec {
+    position: relative;
+  }
+  .sec + .sec { margin-top: calc(2 * var(--mm)); padding-top: calc(2 * var(--mm)); border-top: 0.5px solid var(--paper-line); }
+
+  .eyebrow {
+    color: var(--accent);
+    font-family: "Inter", sans-serif;
+    font-size: 6pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: calc(1.2 * var(--mm));
+  }
+  .eyebrow .num {
+    width: 12px; height: 12px;
+    border: 1px solid var(--accent);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 5.4pt; font-weight: 700; letter-spacing: 0;
+  }
+
+  /* SECTION 1 */
+  .sec-why h2 {
+    margin: 0 0 calc(1.5 * var(--mm));
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 13pt;
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+  }
+  .sec-why .lede {
+    margin: 0 0 calc(2 * var(--mm));
+    color: var(--body);
+    font-size: 7.6pt;
+    line-height: 1.42;
+  }
+  .sec-why .lede b { color: var(--ink); font-weight: 600; }
+  .sec-why .body {
+    display: block;
+  }
+  .why-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(2 * var(--mm));
+  }
+  .why-stat {
+    border-top: 1.2px solid var(--ink);
+    padding-top: calc(1.2 * var(--mm));
+  }
+  .why-stat .big {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 13pt;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  .why-stat .big .accent { color: var(--accent); }
+  .why-stat .lab {
+    margin-top: calc(0.8 * var(--mm));
+    font-size: 6.4pt;
+    line-height: 1.35;
+    color: var(--body);
+  }
+  .why-stat .lab b { color: var(--ink); font-weight: 600; }
+
+  /* Timeline visual */
+  .timeline {
+    border: 0.5px solid var(--paper-line);
+    background: var(--white);
+    padding: calc(1.6 * var(--mm));
+  }
+  .timeline-title {
+    font-size: 5.6pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--body-2);
+    margin-bottom: calc(1 * var(--mm));
+  }
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .timeline-row .lab {
+    flex: 0 0 24mm;
+    font-size: 6.2pt;
+    color: var(--body);
+  }
+  .timeline-row .bar {
+    flex: 1;
+    height: 4px;
+    background: var(--paper-2);
+    position: relative;
+  }
+  .timeline-row .bar > i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--ink);
+  }
+  .timeline-row.cs .bar > i { background: var(--accent); }
+  .timeline-row .t {
+    flex: 0 0 14mm;
+    text-align: right;
+    font-size: 6.2pt;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .timeline-row.cs .t { color: var(--accent); }
+  .timeline-foot {
+    margin-top: calc(1 * var(--mm));
+    font-size: 5.2pt;
+    color: var(--body-2);
+    letter-spacing: 0.04em;
+  }
+
+  /* SECTION 2 — use cases */
+  .cases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(1.6 * var(--mm));
+  }
+  .case {
+    background: var(--white);
+    border: 0.5px solid var(--paper-line);
+    padding: calc(1.8 * var(--mm)) calc(2 * var(--mm));
+    position: relative;
+    min-height: 0;
+  }
+  .case .ico {
+    position: absolute;
+    top: calc(1.5 * var(--mm));
+    right: calc(1.5 * var(--mm));
+    width: 14px; height: 14px;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+  .case .num {
+    font-family: "Inter Tight", monospace;
+    font-size: 5.4pt;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: calc(0.4 * var(--mm));
+    font-weight: 600;
+  }
+  .case h3 {
+    margin: 0 0 calc(0.6 * var(--mm));
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 700;
+    font-size: 7.2pt;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    padding-right: 18px;
+  }
+  .case p {
+    margin: 0;
+    font-size: 6.4pt;
+    line-height: 1.4;
+    color: var(--body);
+  }
+
+  /* SECTION 3 — architecture */
+  .arch {
+    background: var(--white);
+    border: 0.5px solid var(--paper-line);
+    padding: calc(1.6 * var(--mm)) calc(2 * var(--mm)) calc(1.4 * var(--mm));
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: calc(2 * var(--mm));
+    align-items: center;
+  }
+  .arch-diagram {
+    width: 100%;
+    height: calc(20 * var(--mm));
+    display: block;
+  }
+  .arch-foot {
+    margin: 0;
+    font-size: 6.2pt;
+    line-height: 1.4;
+    color: var(--body);
+    border-left: 0.5px solid var(--paper-line);
+    padding-left: calc(2 * var(--mm));
+  }
+  .arch-foot b { color: var(--ink); font-weight: 600; }
+
+  /* SECTION 4 — spec table */
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 6.4pt;
+    line-height: 1.3;
+  }
+  .spec-table tr {
+    border-bottom: 0.5px solid var(--paper-line);
+  }
+  .spec-table tr:first-child { border-top: 0.5px solid var(--paper-line); }
+  .spec-table td {
+    padding: calc(0.55 * var(--mm)) calc(1.5 * var(--mm)) calc(0.55 * var(--mm)) 0;
+    vertical-align: top;
+  }
+  .spec-table td.k {
+    width: 32mm;
+    white-space: nowrap;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 6pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-right: calc(2 * var(--mm));
+  }
+  .spec-table td.v {
+    color: var(--body);
+  }
+  .spec-table td.v b { color: var(--ink); font-weight: 600; }
+  .spec-table .pill {
+    display: inline-block;
+    background: var(--paper-2);
+    color: var(--ink);
+    padding: 0.5px 4px;
+    margin: 0.5px 2px 0.5px 0;
+    font-size: 5.6pt;
+    letter-spacing: 0.02em;
+  }
+  .todo-mark {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 6.4pt;
+    letter-spacing: 0.05em;
+    margin-left: 4px;
+  }
+
+  /* CONTACT BAND */
+  .contact {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: calc(5 * var(--mm));
+    height: calc(17 * var(--mm));
+    padding: calc(1.6 * var(--mm)) calc(8 * var(--mm)) calc(1.4 * var(--mm));
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: calc(3 * var(--mm));
+    align-items: center;
+    border-top: 0.5px solid var(--paper-line);
+  }
+  .contact .col h4 {
+    margin: 0 0 calc(0.6 * var(--mm));
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .contact .col .tag {
+    font-size: 5.4pt;
+    color: var(--body);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .contact .col .addr {
+    margin-top: calc(1.4 * var(--mm));
+    font-size: 5.6pt;
+    line-height: 1.45;
+    color: var(--body);
+    letter-spacing: 0.01em;
+  }
+  .contact .col .red-strip {
+    margin-top: 4px;
+    width: 32mm; height: 3px;
+    background: var(--flag);
+    position: relative;
+  }
+  .contact .col .red-strip::before {
+    content: "";
+    position: absolute; left: 14mm; top: -1px; bottom: -1px;
+    width: 4mm;
+    background: radial-gradient(circle at 50% 50%, var(--flag) 28%, white 28% 34%, var(--flag) 34% 40%, white 40% 46%, var(--flag) 46%);
+  }
+  .contact ul {
+    list-style: none; margin: 0; padding: 0;
+    font-size: 6.4pt; line-height: 1.35;
+    color: var(--ink);
+  }
+  .contact ul li { display: flex; align-items: center; gap: 5px; margin-bottom: 1px; }
+  .contact ul li svg { flex: none; opacity: 0.55; width: 8px; height: 8px; }
+
+  .qr-block {
+    display: flex; align-items: center; gap: calc(2.5 * var(--mm));
+    justify-content: flex-end;
+  }
+  .qr {
+    width: calc(15 * var(--mm)); height: calc(15 * var(--mm));
+    background: var(--white);
+    padding: 1mm;
+    border: 0.5px solid var(--paper-line);
+    flex: none;
+  }
+  .qr svg { display: block; width: 100%; height: 100%; }
+  .qr-cta {
+    text-align: left;
+    color: var(--accent);
+    font-size: 5.8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .qr-cta .small {
+    color: var(--body-2);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+    font-size: 5.4pt;
+    text-transform: none;
+  }
+
+  /* Bottom rail */
+  .rail {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: calc(5 * var(--mm));
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    padding: 0 calc(8 * var(--mm));
+    color: rgba(255,255,255,0.78);
+    font-size: 6pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .rail .swatch {
+    width: calc(5 * var(--mm)); height: 100%;
+    background: var(--accent);
+    position: absolute; right: 0; top: 0;
+  }
+
+  /* ================================================================
+     PRINT
+     ================================================================ */
+  /* Print wrapper — 154×216mm box that contains the 148×210 trim page
+     plus 3mm bleed on every side and crop marks at the corners. */
+  .page-wrap {
+    position: relative;
+    width: calc(154 * var(--mm));
+    height: calc(216 * var(--mm));
+    margin: 16px auto;
+    background: var(--paper);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .page-wrap.front-wrap { background: var(--ink); }     /* bleed color = front zemin */
+  .page-wrap.back-wrap  { background: var(--paper); }   /* bleed color = back zemin */
+
+  .page-wrap .page {
+    position: absolute;
+    top: calc(3 * var(--mm));
+    left: calc(3 * var(--mm));
+    width: calc(148 * var(--mm));
+    height: calc(210 * var(--mm));
+    box-shadow: none;
+  }
+
+  /* Crop marks (printer's marks) — 0.25pt hairline, sit in the bleed zone,
+     do not touch the trim edge. Each mark is 3mm long, offset 0 from the trim. */
+  .crop-marks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .crop-marks span {
+    position: absolute;
+    background: #000;
+  }
+  /* Top-left */
+  .crop-marks .tl-h { top: calc(3 * var(--mm)); left: 0; width: calc(2 * var(--mm)); height: 0.25pt; }
+  .crop-marks .tl-v { top: 0; left: calc(3 * var(--mm)); width: 0.25pt; height: calc(2 * var(--mm)); }
+  /* Top-right */
+  .crop-marks .tr-h { top: calc(3 * var(--mm)); right: 0; width: calc(2 * var(--mm)); height: 0.25pt; }
+  .crop-marks .tr-v { top: 0; right: calc(3 * var(--mm)); width: 0.25pt; height: calc(2 * var(--mm)); }
+  /* Bottom-left */
+  .crop-marks .bl-h { bottom: calc(3 * var(--mm)); left: 0; width: calc(2 * var(--mm)); height: 0.25pt; }
+  .crop-marks .bl-v { bottom: 0; left: calc(3 * var(--mm)); width: 0.25pt; height: calc(2 * var(--mm)); }
+  /* Bottom-right */
+  .crop-marks .br-h { bottom: calc(3 * var(--mm)); right: 0; width: calc(2 * var(--mm)); height: 0.25pt; }
+  .crop-marks .br-v { bottom: 0; right: calc(3 * var(--mm)); width: 0.25pt; height: calc(2 * var(--mm)); }
+
+  @media print {
+    @page {
+      size: 154mm 216mm;       /* 148 + 3mm bleed × 2; 210 + 3mm bleed × 2 */
+      margin: 0;
+    }
+    html, body { background: white; margin: 0; padding: 0; }
+    .preview { display: block; padding: 0; margin: 0; }
+    .label { display: none !important; }
+    .page-wrap {
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page-wrap:last-child { page-break-after: auto; break-after: auto; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="preview">
+
+  <!-- ========== FRONT ========== -->
+  <div>
+    <div class="label">Ön Yüz · 154 × 216 mm (148 × 210 trim + 3 mm bleed)</div>
+    <div class="page-wrap front-wrap">
+      <div class="crop-marks"><span class="tl-h"></span><span class="tl-v"></span><span class="tr-h"></span><span class="tr-v"></span><span class="bl-h"></span><span class="bl-v"></span><span class="br-h"></span><span class="br-v"></span></div>
+    <section class="page front" id="front">
+
+
+      <!-- Top: logo + made-in -->
+      <div class="front-top">
+        <div class="brand-lockup">
+          <img class="brand-logo brand-logo--white" src="assets/cs-logo.png" alt="Clairsense">
+          <span class="brand-word">CLAIRSENSE</span>
+        </div>
+        <div class="made-in">
+          <img class="tr-flag" src="assets/tr-emblem.png" alt="Türk Bayrağı Amblemi">
+          <span>Yerli ve Milli</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Hero -->
+      <div class="hero">
+        <h1>
+          STRATEJİK TESİSİNİZİN
+          <span class="line2">DAİMİ NÖBETÇİSİ</span>
+        </h1>
+        <div class="feature-row">
+          <span class="feat"><span class="num">01</span>Hava Kalitesi<br>Takibi</span>
+          <span class="plus">+</span>
+          <span class="feat"><span class="num">02</span>Erken Yangın<br>Tespiti</span>
+          <span class="plus">+</span>
+          <span class="feat"><span class="num">03</span>Enfeksiyon Riski<br>Analizi</span>
+        </div>
+
+        <div class="hero-tagline">
+          <div class="all-in">Hepsi <em>tek cihazda.</em></div>
+        </div>
+      </div>
+
+      <!-- Device -->
+      <div class="device-wrap">
+        <div class="device-stage">
+          <div class="device-photo-wrap">
+            <img class="device-photo" src="assets/device-hero-lifestyle.png" alt="Clairsense cihaz — mobil uygulama ile" style="object-fit: contain">
+          </div>
+          <svg class="device-svg device-anno" viewBox="0 0 320 270" xmlns="http://www.w3.org/2000/svg">
+            <!-- corner crosshair markers only -->
+            <g stroke="rgba(255,255,255,0.22)" stroke-width="0.5" fill="none">
+              <path d="M10 18 H22 M16 12 V24"/>
+              <path d="M298 246 H310 M304 240 V252"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Left callout -->
+        <div class="device-callout">
+          <div class="label-row">SENSÖR FÜZYONU</div>
+          <h3>Üç tehdidi tek cihazda görür.</h3>
+          <div class="specs">
+            <span><b>Hava Kalitesi</b> &mdash; CO₂ · PM2.5 · PM10 · VOC · Sıcaklık · Nem</span>
+            <span><b>Yangın Riski</b> &mdash; yanma öncesi sensör füzyonu: PM + VOC + ΔT anomalisi</span>
+            <span><b>Enfeksiyon Riski</b> &mdash; yapay zeka destekli skor: nem + sıcaklık + VOC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillars -->
+      <div class="pillars">
+        <div class="pillar">
+          <!-- AI: neural / chip -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12" rx="1.5"/>
+            <circle cx="9.5" cy="10" r="1.1" fill="#FF6B1A" stroke="none"/>
+            <circle cx="14.5" cy="10" r="1.1" fill="#FF6B1A" stroke="none"/>
+            <circle cx="12" cy="14.5" r="1.1" fill="#FF6B1A" stroke="none"/>
+            <path d="M9.5 10L12 14.5L14.5 10"/>
+            <path d="M6 9h-2M6 12h-2M6 15h-2M18 9h2M18 12h2M18 15h2M9 6v-2M12 6v-2M15 6v-2M9 18v2M12 18v2M15 18v2"/>
+          </svg>
+          Yapay zekâ<br/>destekli analiz
+        </div>
+        <div class="pillar">
+          <!-- Multi-threat: layered shields -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l7 2.5v6c0 4.2-2.9 7.7-7 9.5-4.1-1.8-7-5.3-7-9.5v-6L12 3z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          Tek cihaz,<br/>çoklu tehdit
+        </div>
+        <div class="pillar">
+          <!-- Data sovereignty: server with location pin -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="6" rx="1.2"/>
+            <rect x="4" y="12" width="16" height="6" rx="1.2"/>
+            <circle cx="7.5" cy="7" r="0.7" fill="#FF6B1A" stroke="none"/>
+            <circle cx="7.5" cy="15" r="0.7" fill="#FF6B1A" stroke="none"/>
+            <path d="M14 15h4"/>
+            <path d="M14 7h4"/>
+          </svg>
+          Veri Türkiye'de<br/>kalır
+        </div>
+        <div class="pillar">
+          <!-- Domestic production: crescent + star -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 4.5a8 8 0 1 0 0 15 6.5 6.5 0 1 1 0-15z"/>
+            <path d="M17.5 9.5l1 1.7 1.9.4-1.4 1.4.3 1.9-1.8-.9-1.8.9.3-1.9-1.4-1.4 1.9-.4z" fill="#FF6B1A" stroke="none"/>
+          </svg>
+          Yerli ve milli<br/>üretim
+        </div>
+      </div>
+
+      <!-- Closing motto -->
+      <div class="closing-motto">
+        Müdahale için <b>size gereken zamanı</b> kazandırır.
+      </div>
+
+      <!-- Bottom strip -->
+      <div class="front-bottom">
+        <span>clairsense.net</span>
+      </div>
+    </section>
+    </div>
+  </div>
+
+  <!-- ========== BACK ========== -->
+  <div>
+    <div class="label">Arka Yüz · 154 × 216 mm (148 × 210 trim + 3 mm bleed)</div>
+    <div class="page-wrap back-wrap">
+      <div class="crop-marks"><span class="tl-h"></span><span class="tl-v"></span><span class="tr-h"></span><span class="tr-v"></span><span class="bl-h"></span><span class="bl-v"></span><span class="br-h"></span><span class="br-v"></span></div>
+    <section class="page back" id="back">
+
+
+      <div class="back-grid">
+
+        <!-- ============ SECTION 1 — WHY ============ -->
+        <div class="sec sec-why">
+          <div class="eyebrow"><span class="num">01</span> NE YAPAR?</div>
+          <h2>Hava kalitesi, yangın ve enfeksiyon riskini <b>tek cihazda</b> izler.</h2>
+          <p class="lede">
+            Önce <b>hava kalitesini</b> gerçek zamanlı ölçer; CO₂·PM·VOC·sıcaklık·nem füzyonu ile
+            yangın <b>başlamadan önce</b> riski hesaplar &mdash; böylece erken yangın alarmı
+            <b>çok daha büyük zararları</b> engellemiş olur. Aynı verileri <b>yapay zekâ destekli</b>
+            algoritmaya taşıyarak <b>aerosol bulaş riskini</b> gerçek zamanlı skorlar; böylelikle
+            <b>enfeksiyon riski analizini</b> vermiş olur.
+          </p>
+          <div class="body">
+            <div class="why-stats">
+              <div class="why-stat">
+                <div class="big">ÖN<span class="accent">.</span></div>
+                <div class="lab"><b>Erken uyarı</b> &mdash; gerekli zamanı sağlayarak erken müdahale</div>
+              </div>
+              <div class="why-stat">
+                <div class="big">3<span class="accent">×</span></div>
+                <div class="lab"><b>Üç tehdit</b> tek cihaz: hava, yangın, enfeksiyon</div>
+              </div>
+              <div class="why-stat">
+                <div class="big">TR<span class="accent">.</span></div>
+                <div class="lab">Veri <b>Türkiye'de</b> kalır — on-prem / bölgesel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SECTION 2 — WHERE ============ -->
+        <div class="sec sec-cases">
+          <div class="eyebrow"><span class="num">02</span> Kullanım Senaryoları</div>
+          <div class="cases">
+
+            <div class="case">
+              <span class="ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M3 10 L12 4 L21 10 V20 H3 Z"/>
+                  <path d="M3 14 H21"/>
+                  <path d="M16 17 V20 M14 17 V20 M18 17 V20"/>
+                </svg>
+              </span>
+              <div class="num">01 / 04</div>
+              <h3>Mühimmat ve Patlayıcı Depoları</h3>
+              <p>Sıcaklık-nem eşik aşımı, hava basıncı anomalileri, erken yangın işaretleri. Kapalı depo ortamında kesintisiz izleme.</p>
+            </div>
+
+            <div class="case">
+              <span class="ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 4 V7 M12 17 V20 M4 12 H7 M17 12 H20 M6.3 6.3 L8.5 8.5 M15.5 15.5 L17.7 17.7 M6.3 17.7 L8.5 15.5 M15.5 8.5 L17.7 6.3"/>
+                </svg>
+              </span>
+              <div class="num">02 / 04</div>
+              <h3>Üretim ve Montaj Hatları</h3>
+              <p>Kaynak dumanı, ince partikül (PM2.5 / PM10) maruziyeti ve yoğun vardiyalarda <b>aerosol bulaş riski</b>. Personel sağlığı ve İSG uyumu.</p>
+            </div>
+
+            <div class="case">
+              <span class="ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="8" cy="8" r="2.2"/>
+                  <circle cx="16" cy="8" r="2.2"/>
+                  <path d="M3 18c0-2.5 2-4.5 5-4.5s5 2 5 4.5"/>
+                  <path d="M11 18c0-2.5 2-4.5 5-4.5s5 2 5 4.5"/>
+                  <path d="M3 21h18"/>
+                </svg>
+              </span>
+              <div class="num">03 / 04</div>
+              <h3>Savunma Sanayi Ofisleri ve Çalışma Alanları</h3>
+              <p>Mühendis ve personelin yoğun çalıştığı kapalı ofislerde <b>hava kalitesi</b>, CO₂, VOC ve <b>aerosol bulaş riski</b> izleme — verimlilik ve sağlık için.</p>
+            </div>
+
+            <div class="case">
+              <span class="ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 14 V21"/>
+                  <path d="M9 21 H15"/>
+                  <path d="M5 9 C7 6 9 5 12 5 C15 5 17 6 19 9"/>
+                  <path d="M7 11 C8.5 9 10 8.5 12 8.5 C14 8.5 15.5 9 17 11"/>
+                  <circle cx="12" cy="13" r="1.4"/>
+                </svg>
+              </span>
+              <div class="num">04 / 04</div>
+              <h3>Komuta Merkezleri ve Kritik Altyapı</h3>
+              <p>Veri merkezi kabin-içi erken yangın tespiti, ekipman aşırı ısınma uyarısı; uzak / insansız enerji-telekom tesislerinde merkezi izleme ve SOC entegrasyonu.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============ SECTION 3 — HOW ============ -->
+        <div class="sec sec-arch">
+          <div class="eyebrow"><span class="num">03</span> Sistem Mimarisi</div>
+          <div class="arch">
+            <div>
+            <svg class="arch-diagram" viewBox="0 0 600 165" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#0B1B2B"/>
+                </marker>
+                <marker id="arrO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#FF6B1A"/>
+                </marker>
+              </defs>
+
+              <!-- Boxes -->
+              <g font-family="Inter Tight, sans-serif" font-size="11" fill="#0B1B2B">
+
+                <!-- Device -->
+                <g>
+                  <rect x="10" y="20" width="120" height="50" fill="#0B1B2B" stroke="#0B1B2B"/>
+                  <text x="70" y="42" text-anchor="middle" fill="white" font-weight="700" font-size="11">CLAIRSENSE</text>
+                  <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-weight="500" letter-spacing="0.5">CİHAZ</text>
+                </g>
+
+                <!-- MQTT broker -->
+                <g>
+                  <rect x="220" y="20" width="120" height="50" fill="white" stroke="#0B1B2B" stroke-width="1.2"/>
+                  <text x="280" y="42" text-anchor="middle" font-weight="700" font-size="11">MQTT</text>
+                  <text x="280" y="56" text-anchor="middle" fill="#4A5568" font-size="9" font-weight="500" letter-spacing="0.5">BROKER</text>
+                </g>
+
+                <!-- Backend with AI badge -->
+                <g>
+                  <rect x="430" y="20" width="160" height="50" fill="white" stroke="#0B1B2B" stroke-width="1.2"/>
+                  <text x="510" y="40" text-anchor="middle" font-weight="700" font-size="11">BACKEND</text>
+                  <text x="510" y="52" text-anchor="middle" fill="#4A5568" font-size="8" font-weight="500" letter-spacing="0.5">SİZİN SUNUCUNUZ</text>
+                  <!-- AI accent stripe at bottom -->
+                  <rect x="430" y="60" width="160" height="10" fill="#FF6B1A"/>
+                  <text x="510" y="67.5" text-anchor="middle" fill="white" font-size="7" font-weight="700" letter-spacing="1.2">AI · RİSK SKORU</text>
+                </g>
+
+                <!-- Connectors top -->
+                <line x1="130" y1="45" x2="218" y2="45" stroke="#0B1B2B" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="174" y="36" text-anchor="middle" font-size="8" font-weight="600" letter-spacing="0.6" fill="#FF6B1A">mTLS</text>
+                <text x="174" y="58" text-anchor="middle" font-size="7" fill="#4A5568" letter-spacing="0.4">MQTT/TLS</text>
+
+                <line x1="340" y1="45" x2="428" y2="45" stroke="#0B1B2B" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="384" y="36" text-anchor="middle" font-size="8" font-weight="600" letter-spacing="0.6" fill="#FF6B1A">HTTPS</text>
+                <text x="384" y="58" text-anchor="middle" font-size="7" fill="#4A5568" letter-spacing="0.4">REST / WS</text>
+
+                <!-- Vertical drop from backend -->
+                <line x1="510" y1="70" x2="510" y2="95" stroke="#0B1B2B" stroke-width="1.5"/>
+                <line x1="180" y1="95" x2="510" y2="95" stroke="#0B1B2B" stroke-width="1.5"/>
+                <line x1="180" y1="95" x2="180" y2="115" stroke="#0B1B2B" stroke-width="1.5" marker-end="url(#arr)"/>
+                <line x1="345" y1="95" x2="345" y2="115" stroke="#0B1B2B" stroke-width="1.5" marker-end="url(#arr)"/>
+                <line x1="510" y1="95" x2="510" y2="115" stroke="#0B1B2B" stroke-width="1.5" marker-end="url(#arr)"/>
+
+                <!-- Bottom row clients -->
+                <g>
+                  <rect x="120" y="118" width="120" height="38" fill="#F7F8FA" stroke="#0B1B2B"/>
+                  <text x="180" y="135" text-anchor="middle" font-weight="700" font-size="10">MOBİL</text>
+                  <text x="180" y="148" text-anchor="middle" fill="#4A5568" font-size="7.5" letter-spacing="0.4">iOS · ANDROID · 14 DİL</text>
+                </g>
+                <g>
+                  <rect x="285" y="118" width="120" height="38" fill="#F7F8FA" stroke="#0B1B2B"/>
+                  <text x="345" y="135" text-anchor="middle" font-weight="700" font-size="10">WEB DASHBOARD</text>
+                  <text x="345" y="148" text-anchor="middle" fill="#4A5568" font-size="7.5" letter-spacing="0.4">CANLI VERİ · ALARM</text>
+                </g>
+                <g>
+                  <rect x="450" y="118" width="120" height="38" fill="#F7F8FA" stroke="#0B1B2B"/>
+                  <text x="510" y="135" text-anchor="middle" font-weight="700" font-size="10">KOMUTA / SOC</text>
+                  <text x="510" y="148" text-anchor="middle" fill="#4A5568" font-size="7.5" letter-spacing="0.4">SCADA · API</text>
+                </g>
+              </g>
+            </svg>
+            </div>
+            <div class="arch-foot">
+              Her cihaz benzersiz <b>mTLS</b> sertifikasıyla kimliklenir. Veri akışı <b>MQTT over TLS</b> ile şifrelidir;
+              broker ve backend <b>kendi sunucunuzda</b> çalışabilir. Backend’de çalışan <b>yapay zekâ motoru</b>
+              CO₂·PM·VOC·sıcaklık·nem verilerini birleştirerek <b>enfeksiyon risk skorunu</b> gerçek zamanlı üretir.
+              Bulut zorunluluğu yok; bağlantı koparsa cihaz yerel buffer’a yazar, geri geldiğinde sıfır kayıpla senkronize olur.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SECTION 4 — SPEC ============ -->
+        <div class="sec sec-spec">
+          <div class="eyebrow"><span class="num">04</span> Teknik Özet</div>
+          <table class="spec-table">
+            <tr>
+              <td class="k">Sensörler</td>
+              <td class="v">
+                <span class="pill">CO₂</span><span class="pill">PM2.5</span><span class="pill">PM10</span><span class="pill">VOC</span><span class="pill">Sıcaklık</span><span class="pill">Nem</span><span class="pill">Hava Basıncı</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="k">Erken Yangın Riski</td>
+              <td class="v">Yanma öncesi sensör füzyonu &mdash; <b>PM + VOC + ΔT</b> anomalisi ile saniyeler içinde alarm</td>
+            </tr>
+            <tr>
+              <td class="k">Enfeksiyon Bulaş Riski</td>
+              <td class="v"><b>Yapay zekâ destekli</b> skor &mdash; nem + sıcaklık + VOC üzerinden aerosol risk göstergesi</td>
+            </tr>
+            <tr>
+              <td class="k">Boyut &nbsp;·&nbsp; Ağırlık</td>
+              <td class="v"><b>150 × 130 × 27 mm</b> &nbsp;·&nbsp; <b>250 g</b> &nbsp;<span style="color:var(--body-2)">(kablo ve güç ünitesi hariç)</span></td>
+            </tr>
+            <tr>
+              <td class="k">Güç</td>
+              <td class="v"><b>5 VDC</b> &nbsp;·&nbsp; <b>500 mA</b> akım tüketimi</td>
+            </tr>
+            <tr>
+              <td class="k">Koruma Sınıfı</td>
+              <td class="v"><b>IP20</b> — iç mekân kurulumu</td>
+            </tr>
+            <tr>
+              <td class="k">Bağlantı</td>
+              <td class="v">Wi-Fi 802.11 b/g/n &nbsp;·&nbsp; <b>WPA2-Enterprise</b> &nbsp;·&nbsp; MQTT over TLS (mTLS)</td>
+            </tr>
+            <tr>
+              <td class="k">Yazılım</td>
+              <td class="v">Mobil (iOS + Android, 14 dil) &nbsp;·&nbsp; Web &nbsp;·&nbsp; Süperuser admin paneli</td>
+            </tr>
+            <tr>
+              <td class="k">Veri Yerleşimi</td>
+              <td class="v"><b>On-prem veya bölgesel</b> — Türkiye'de kalır &nbsp;·&nbsp; KVKK uyumlu audit log</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Contact band -->
+      <div class="contact">
+        <div class="col">
+          <h4>CLAIRSENSE <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:0.5em;letter-spacing:0.08em;color:var(--ink-3);vertical-align:0.25em;margin-left:0.25em;">© 2026</span></h4>
+          <div class="tag">Türkiye'de tasarlandı ve üretildi</div>
+          <div class="addr">
+            Dijitalpark Teknokent · Çekmeköy / İstanbul
+          </div>
+        </div>
+        <div class="col">
+          <ul>
+            <li>
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="5"/><path d="M1 6 H11 M6 1 C8 3 8 9 6 11 C4 9 4 3 6 1"/></svg>
+              clairsense.net
+            </li>
+            <li>
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="2" width="10" height="8"/><path d="M1 3 L6 7 L11 3"/></svg>
+              info@clairsense.net
+            </li>
+            <li>
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3 C2 2 3 1.5 4 2 L5 4 L4 5 C5 7 5 7 7 8 L8 7 L10 8 C10.5 9 10 10 9 10 C5.5 10 2 6.5 2 3 Z"/></svg>
+              0850 303 5275
+            </li>
+            <li>
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="4" width="2.4" height="7"/><rect x="1" y="1" width="2.4" height="2.4"/><path d="M5 4 H7.4 V5 C8 4.2 9 4 9.7 4 C11 4 11.5 5 11.5 6.4 V11 H9 V7 C9 6.2 8.7 6 8.2 6 C7.6 6 7.4 6.4 7.4 7 V11 H5 Z"/></svg>
+              linkedin.com/company/clairsense
+            </li>
+          </ul>
+        </div>
+        <div class="col qr-block">
+          <div class="qr">
+            <!-- abstract QR placeholder -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+              <rect width="100" height="100" fill="white"/>
+              <!-- finder patterns -->
+              <g fill="#0B1B2B">
+                <rect x="6" y="6" width="22" height="22"/>
+                <rect x="10" y="10" width="14" height="14" fill="white"/>
+                <rect x="14" y="14" width="6" height="6"/>
+                <rect x="72" y="6" width="22" height="22"/>
+                <rect x="76" y="10" width="14" height="14" fill="white"/>
+                <rect x="80" y="14" width="6" height="6"/>
+                <rect x="6" y="72" width="22" height="22"/>
+                <rect x="10" y="76" width="14" height="14" fill="white"/>
+                <rect x="14" y="80" width="6" height="6"/>
+              </g>
+              <!-- pseudo-random data modules -->
+              <g fill="#0B1B2B" id="qrmod"></g>
+              <script>
+                // populate placeholder modules
+              </script>
+            </svg>
+          </div>
+          <div class="qr-cta">
+            TARA VE<br>DEMO TALEP ET
+            <div class="small">clairsense.net/demo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Generate pseudo-QR module pattern (deterministic, looks like a QR but is a placeholder)
+  (function () {
+    const ns = "http://www.w3.org/2000/svg";
+    document.querySelectorAll(".qr svg").forEach(svg => {
+      const g = svg.querySelector("#qrmod");
+      if (!g) return;
+      const size = 4;
+      // pseudo-random mask via simple LCG so it's stable
+      let s = 1337;
+      const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+      for (let y = 6; y < 94; y += size) {
+        for (let x = 6; x < 94; x += size) {
+          // skip finder regions
+          if ((x < 30 && y < 30) || (x > 70 && y < 30) || (x < 30 && y > 70)) continue;
+          if (rnd() > 0.52) {
+            const r = document.createElementNS(ns, "rect");
+            r.setAttribute("x", x);
+            r.setAttribute("y", y);
+            r.setAttribute("width", size);
+            r.setAttribute("height", size);
+            g.appendChild(r);
+          }
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
