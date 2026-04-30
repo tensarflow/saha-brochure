@@ -326,7 +326,7 @@
     position: absolute;
     top: calc(81 * var(--mm));
     left: calc(2 * var(--mm));
-    right: 0;
+    right: calc(4 * var(--mm));
     height: calc(72 * var(--mm));
     display: flex;
     justify-content: flex-end;
@@ -334,7 +334,7 @@
   }
   .device-stage {
     position: relative;
-    width: calc(96 * var(--mm));
+    width: calc(88 * var(--mm));
     height: 100%;
   }
 
@@ -938,18 +938,19 @@
 
     /* Fix device photo overflowing in print/PDF export.
        Lock the wrap and image to explicit mm dimensions so the
-       print engine cannot expand them beyond the intended area. */
+       print engine cannot expand them beyond the intended area.
+       Right inset 4mm so the device doesn't touch the trim edge. */
     .device-wrap {
       position: absolute;
       top: calc(81 * var(--mm));
       left: calc(2 * var(--mm));
       right: auto;
-      width: calc(146 * var(--mm));   /* page width minus left offset */
+      width: calc(142 * var(--mm));   /* 148 - 2mm left - 4mm right */
       height: calc(72 * var(--mm));
     }
     .device-stage {
       position: relative;
-      width: calc(96 * var(--mm));
+      width: calc(88 * var(--mm));
       height: calc(72 * var(--mm));
       flex: none;
     }
@@ -964,9 +965,9 @@
       justify-content: center;
     }
     .device-photo {
-      width: calc(96 * var(--mm));
+      width: calc(88 * var(--mm));
       height: calc(70 * var(--mm));
-      max-width: calc(96 * var(--mm));
+      max-width: calc(88 * var(--mm));
       max-height: calc(70 * var(--mm));
       object-fit: contain;
       filter: none;
