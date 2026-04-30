@@ -167,9 +167,6 @@
     color: var(--white);
     line-height: 1;
   }
-    gap: 8px;
-    color: var(--white);
-  }
   .logo-mark {
     width: 22px; height: 22px;
     position: relative;
@@ -374,8 +371,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(0,0,0,0.55)) drop-shadow(0 4px 10px rgba(0,0,0,0.4));
-    /* Soft drop shadow to lift white device off dark hero */
     filter:
       drop-shadow(0 2px 8px rgba(0,0,0,0.5))
       drop-shadow(0 12px 24px rgba(0,0,0,0.45));
@@ -940,6 +935,42 @@
     }
     .page-wrap:last-child { page-break-after: auto; break-after: auto; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* Fix device photo overflowing in print/PDF export.
+       Lock the wrap and image to explicit mm dimensions so the
+       print engine cannot expand them beyond the intended area. */
+    .device-wrap {
+      position: absolute;
+      top: calc(81 * var(--mm));
+      left: calc(2 * var(--mm));
+      right: auto;
+      width: calc(146 * var(--mm));   /* page width minus left offset */
+      height: calc(72 * var(--mm));
+    }
+    .device-stage {
+      position: relative;
+      width: calc(96 * var(--mm));
+      height: calc(72 * var(--mm));
+      flex: none;
+    }
+    .device-photo-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: calc(1.44 * var(--mm));  /* 2% of 72mm */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .device-photo {
+      width: calc(96 * var(--mm));
+      height: calc(70 * var(--mm));
+      max-width: calc(96 * var(--mm));
+      max-height: calc(70 * var(--mm));
+      object-fit: contain;
+      filter: none;
+    }
   }
 
 </style>
@@ -993,7 +1024,7 @@
       <div class="device-wrap">
         <div class="device-stage">
           <div class="device-photo-wrap">
-            <img class="device-photo" src="assets/device-hero-lifestyle.png" alt="Clairsense cihaz — mobil uygulama ile" style="object-fit: contain">
+            <img class="device-photo" src="assets/device-hero-lifestyle.png" alt="Clairsense cihaz — mobil uygulama ile">
           </div>
           <svg class="device-svg device-anno" viewBox="0 0 320 270" xmlns="http://www.w3.org/2000/svg">
             <!-- corner crosshair markers only -->
